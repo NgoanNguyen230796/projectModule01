@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Roboto font-family -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,700&display=swap"
+        rel="stylesheet">
+    <!-- font-awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- dashboard.css link -->
+    <link rel="stylesheet" href="./css/TrangQuanLyTaiKhoan.css">
+    <title>Quản lý tài khoản</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="divLeft">
+            <div class="logo">
+                <img src="./image/Ellipse 6.png" alt="Avatar">
+                <p class="text-white">Rekkei Academy</a>
+            </div>
+            <div class="item">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>Bảng điều khiển
+                </a>
+            </div>
+
+            <div class="item">
+                <a href="trangQuanLyKhoaHoc.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>Quản lý khóa học
+                </a>
+
+            </div>
+            <div class="item">
+                <a href="trangQuanLyLopHoc.html" class="nav-link">
+                    <i class="fa-solid fa-graduation-cap"></i>Quản lý lớp học
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLySinhVien.html" class="nav-link">
+                    <i class="fa-solid fa-square-poll-vertical"></i>Quản lý sinh viên
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLyTaiKhoan.html" class="nav-link">
+                    <i class="fa-solid fa-user"></i>Quản lý tài khoản
+                </a>
+            </div>
+        </div>
+        <div class="divRight">
+            <div class="divHeader">
+                <div>
+                    <p>HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#myModalLogOut">Đăng xuất</button>
+                </div>
+            </div>
+            <div class="divMain">
+                <h4>TRANG QUẢN LÝ TÀI KHOẢN</h4>
+                <div class="divSearch">
+                    <div>
+                        <input type="text" name="search" id="search" placeholder="Nhập email để tìm kiếm">
+                        <button type="button" class="btn btn-success" id="btnSearch">Tìm kiếm</button>
+                    </div>
+                    <div class="handalAZ">
+                        <!-- <label for="btnSelect">Sắp xếp tên tài khoản theo email</label> -->
+                        <select id="btnSelect" class="select-custom-select select-custom-choose_aversionoffontawesome margin-bottom-0 padding-right-4xl" onchange="handSortEmail();">
+                            <option value="" selected>Sắp xếp tên tài khoản theo email</option>
+                            <option value="defaultCourse">Default</option>
+                            <option value="AZ">Từ A--Z</option>
+                            <option value="ZA">Từ Z--A</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="divNotFound hide">
+                    <p>Không tìm thấy kết quả</p>
+                </div>
+                <div class="divTable show">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">STT</th>
+                                <th>Email</th>
+                                <th>Mật khẩu</th>
+                                <th>Họ và tên</th>
+                                <th>Trạng thái</th>
+                                <th class="text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content">
+
+                        </tbody>
+
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" id="listPage">
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+            <div class="divFooter">
+                <strong>Copyright &copy;</strong>
+                Rikkei Academy 2023
+            </div>
+        </div>
+    </div>
+
+
+    <!-- myModalUserSystemClock-->
+    <div class="modal" id="myModalUserSystemClock">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 600px; height: 200px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn khóa tài khoản này hay không?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-danger" id="buttonYes">Có</button>
+                    <button type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">Không</button>
+                </div>
+                <div class="modal-footer">
+                    
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- myModalUserSystemUnClock-->
+    <div class="modal" id="myModalUserSystemUnClock">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 650px; height: 200px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn mở khóa tài khoản này hay không?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body text-center">
+                    <button type="button" class="btn btn-danger" id="btnYesUnClock">Có</button>
+                    <button type="button" class="btn btn-success" class="btn-close"
+                        data-bs-dismiss="modal">Không</button>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <!--ModalLogOut  -->
+    <div class="modal" id="myModalLogOut">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 600px; height: 200px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn muốn đăng xuất khỏi hệ thống không?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body text-center"><button type="button" class="btn btn-danger" id="btnYes">Có</button>
+                    <button type="button" class="btn btn-success" id="btnNo">Không</button>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- <script src="./js/trangQuanLyTaiKhoan.js"></script> -->
+    <script src="./js/trangQuanLyTaiKhoanTest.js"></script>
+</body>
+
+</html>

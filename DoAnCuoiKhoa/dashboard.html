@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Roboto font-family -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,700&display=swap"
+        rel="stylesheet">
+    <!-- font-awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- dashboard.css link -->
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="divLeft">
+            <div class="logo">
+                <img src="./image/Ellipse 6.png" alt="Avatar">
+                <p class="text-white">Rekkei Academy</a>
+            </div>
+            <div class="item">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>Bảng điều khiển
+                </a>
+            </div>
+
+            <div class="item">
+                <a href="trangQuanLyKhoaHoc.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>Quản lý khóa học
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLyLopHoc.html" class="nav-link">
+                    <i class="fa-solid fa-graduation-cap"></i>Quản lý lớp học
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLySinhVien.html" class="nav-link">
+                    <i class="fa-solid fa-square-poll-vertical"></i>Quản lý sinh viên
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLyTaiKhoan.html" class="nav-link">
+                    <i class="fa-solid fa-user"></i>Quản lý tài khoản
+                </a>
+            </div>
+        </div>
+        <div class="divRight">
+            <div class="divHeader">
+                <div>
+                    <p>HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</p>
+
+                </div>
+                <div>
+                    <button type="button" class="btn btn-danger"data-bs-toggle="modal"
+                    data-bs-target="#myModalLogOut">Đăng xuất</button>
+                </div>
+            </div>
+            <div class="divMain">
+                <div class="khoaHoc">
+                    <img src="./image/Frame 30083.png" alt="image1">
+                    <div>
+                        <p class="titleP">Thống kê khóa học</p>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số lượng khóa học hiện tại là:</p>
+                            </div>
+                            <div>
+                                <p id="courseNumber"></p>
+                            </div>
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="khoaHoc">
+                    <img src="./image/Frame 30084.png" alt="image2">
+                    <div>
+                        <p class="titleP">Thống kê lớp học</p>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số lượng lớp học là: </p>
+                            </div>
+                            <div>
+                                <p id="classNumber"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số lượng lớp học đang hoạt động là: </p>
+                            </div>
+                            <div>
+                                <p id="activeClassNumber"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số lượng lớp học đã kết thúc là:</p>
+                            </div>
+                            <div>
+                                <p id="inActiveClassNumber"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số lượng lớp học đang chờ là:</p>
+                            </div>
+                            <div>
+                                <p id="waitClassNumber"></p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="khoaHoc">
+                    <img src="./image/Frame 30085.png" alt="image3">
+                    <div>
+                        <p class="titleP">Thống kê sinh viên</p>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Tổng số SV là:</p>
+                            </div>
+                            <div>
+                                <p id="sumStudentNumber"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="flexDiv">
+                            <div class="titleSL">
+                                <p>Số SV chờ lớp là: </p>
+                            </div>
+                            <div>
+                                <p id="sumWaitStudentNumber"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số SV đang học là:</p>
+                            </div>
+                            <div>
+                                <p id="sumActiveStudentNumber"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số SV bảo lưu/đình chỉ là: </p>
+                            </div>
+                            <div>
+                                <p id="sumInActiveStudentNumber"></p>
+                            </div>
+                            
+                        </div>
+                        <div class="flexDiv">
+                            <div>
+                                <p class="titleSL">Số SV tốt nghiệp là: </p>
+                            </div>
+                            <div>
+                                <p id="sumGraduateStudentNumber"></p>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="divFooter">
+                <strong>Copyright &copy;</strong>
+                    Rikkei Academy 2023
+            </div>
+        </div> 
+    </div>
+    <!-- SideMenu -->
+    <!-- ModalLogOut -->
+    <div class="modal" id="myModalLogOut">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 600px; height: 200px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn muốn đăng xuất khỏi hệ thống không?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body text-center"><button type="button" class="btn btn-danger"  id="btnYes">Có</button>
+                    <button type="button" class="btn btn-success" id="btnNo">Không</button></div>
+                <div class="modal-footer">
+                    
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+        <script src="./js/dashboard.js"></script>
+</body>
+
+</html>

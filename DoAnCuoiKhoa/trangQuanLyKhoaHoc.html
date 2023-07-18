@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Roboto font-family -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,700&display=swap"
+        rel="stylesheet">
+    <!-- font-awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- trang Quan Ly Khoa Hoc css link -->
+    <link rel="stylesheet" href="./css/TrangQuanLyKhoaHoc.css">
+    <title>Quản lý khóa học</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="divLeft">
+            <div class="logo">
+                <img src="./image/Ellipse 6.png" alt="Avatar">
+                <p class="text-white">Rekkei Academy</a>
+            </div>
+            <div class="item">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>Bảng điều khiển
+                </a>
+            </div>
+
+            <div class="item">
+                <a href="trangQuanLyKhoaHoc.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i>Quản lý khóa học
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLyLopHoc.html" class="nav-link">
+                    <i class="fa-solid fa-graduation-cap"></i>Quản lý lớp học
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLySinhVien.html" class="nav-link">
+                    <i class="fa-solid fa-square-poll-vertical"></i>Quản lý sinh viên
+                </a>
+            </div>
+            <div class="item">
+                <a href="trangQuanLyTaiKhoan.html" class="nav-link">
+                    <i class="fa-solid fa-user"></i>Quản lý tài khoản
+                </a>
+            </div>
+        </div>
+        <div class="divRight">
+            <div class="divHeader">
+                <div>
+                    <p>HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</p>
+
+                </div>
+                <div>
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#myModalLogOut">Đăng xuất</button>
+                </div>
+
+            </div>
+            <div class="divMain">
+                <h4>TRANG QUẢN LÝ KHÓA HỌC</h4>
+                <div class="divSearch">
+                    <div>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#myModalAddData">Tạo mới khóa học</button>
+                    </div>
+                    <div class="divSearchInput">
+                        <input type="text" name="search" id="search" placeholder="Nhập tên khóa học để tìm kiếm">
+                        <button type="button" class="btn btn-success" id="btnSearch">Tìm kiếm</button>
+                    </div>
+                    <div class="handalAZ">
+                        <select id="btnSelect" onchange="handSortCourse();"
+                            class="select-custom-select select-custom-choose_aversionoffontawesome margin-bottom-0 padding-right-4xl">
+                            <option value="" selected>Sắp xếp tên khóa học</option>
+                            <option value="defaultCourse">Default</option>
+                            <option value="AZ">Từ A--Z</option>
+                            <option value="ZA">Từ Z--A</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="divNotFound hide">
+                    <p>Không tìm thấy kết quả</p>
+                </div>
+                <div class="divTable show">
+                    <table class="table table-bordered table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã khóa học</th>
+                                <th>Tên khóa học</th>
+                                <th>Thời gian(giờ)</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content">
+
+                        </tbody>
+
+                    </table>
+                    <nav aria-label="...">
+                        <ul class="pagination" id="listPage">
+
+                        </ul>
+                    </nav>
+
+                </div>
+
+
+            </div>
+            <div class="divFooter">
+                <strong>Copyright &copy;</strong>
+                Rikkei Academy 2023
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The Modal Add Data -->
+    <div class="modal" id="myModalAddData">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px; height: 400px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm mới khóa học</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row groupRow">
+                        <div class="col-6">
+                            <label for="courseId" class="fw-bold">Mã khóa học</label>
+                            <input type="text" class="form-control" id="courseId" value="">
+                            <div class="error-message"></div>
+
+                        </div>
+                        <div class="col-6">
+                            <label for="courseId" class="fw-bold">Tên khóa học</label>
+                            <input type="text" class="form-control" id="courseName" value="">
+                            <div class="error-message"></div>
+                        </div>
+
+                    </div>
+                    <div class="row groupRow">
+                        <div class="col-sm-6">
+                            <label class="fw-bold">Thời gian (giờ)</label>
+                            <input type="text" class="form-control" id="courseTime" value="">
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="fw-bold">Trạng thái</label>
+                            <select id="status" class="form-select">
+                                <option value="0" selected id="inActive">Chưa hoạt động</option>
+                                <option value="1" id="active">Đang hoạt động</option>
+                                <option value="2" id="end">Đã kết thúc</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnAddData">Thêm
+                        mới</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btnClose">Đóng</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- The Modal Update Data -->
+    <div class="modal" id="myModalUpdateData">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 800px; height: 400px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật khóa học</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row groupRow">
+                        <div class="col-6">
+                            <label for="courseIdUpdate" class="fw-bold">Mã khóa học</label>
+                            <input type="text" class="form-control" id="courseIdUpdate" value="">
+                            <div class="error-message"></div>
+
+                        </div>
+                        <div class="col-6">
+                            <label for="courseId" class="fw-bold">Tên khóa học</label>
+                            <input type="text" class="form-control" id="courseNameUpdate" value="">
+                            <div class="error-message"></div>
+                        </div>
+
+                    </div>
+                    <div class="row groupRow">
+                        <div class="col-sm-6">
+                            <label class="fw-bold">Thời gian (giờ)</label>
+                            <input type="text" class="form-control" id="courseTimeUpdate" value="">
+                            <div class="error-message"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="fw-bold">Trạng thái</label>
+                            <select id="statusUpdate" class="form-select">
+                                <option value="0" selected id="inActiveUpdate">Chưa hoạt động</option>
+                                <option value="1" id="activeUpdate">Đang hoạt động</option>
+                                <option value="2" id="endUpdate">Đã kết thúc</option>
+                            </select>
+                            <div class="error-message"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnUpdateData">Cập nhật</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btnClose">Đóng</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- ModalLogOut -->
+    <div class="modal" id="myModalLogOut">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 600px; height: 200px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn muốn đăng xuất khỏi hệ thống không?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body text-center"><button type="button" class="btn btn-danger" id="btnYes">Có</button>
+                    <button type="button" class="btn btn-success" id="btnNo">Không</button>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--ModalDeleteCourse -->
+    <div class="modal" id="ModalDeleteCourse">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 600px; height: 200px;">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Bạn có muốn xóa khóa học không?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body text-center"><button type="button" class="btn btn-danger"
+                        id="btnDeleteCourseYes">Có</button>
+                    <button type="button" class="btn btn-success" id="btnDeleteCourseNo">Không</button>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Alert create success -->
+    <div class="toast-container position-absolute top-0 start-50 mt-5">
+        <div id="liveToastCreateSuccess" class="toast bg-success" role="alert" aria-live="assertive" aria-atomic="true"
+            style="width:290px;height:100px;">
+            <div class="toast-header"></div>
+            <div class="toast-body text-light fs-5">
+                Bạn đã thêm mới thành công
+            </div>
+        </div>
+    </div>
+    <!-- Alert update success -->
+    <div class="toast-container position-absolute top-0 start-50 mt-5">
+        <div id="liveToastUpdateSuccess" class="toast bg-success" role="alert" aria-live="assertive"
+            aria-atomic="true" style="width:290px;height:100px;">
+            <div class="toast-header"></div>
+            <div class="toast-body text-light fs-5">
+                Bạn đã cập nhật thành công
+            </div>
+        </div>
+    </div>
+    <!-- Alert delete success -->
+    <div class="toast-container position-absolute top-0 start-50 mt-5">
+        <div id="liveToastDeleteSuccess" class="toast bg-success" role="alert" aria-live="assertive"
+            aria-atomic="true" style="width:290px;height:100px;">
+            <div class="toast-header"></div>
+            <div class="toast-body text-light fs-5">
+                Bạn đã xóa thành công
+            </div>
+        </div>
+    </div>
+    <!-- Alert delete error -->
+    <div class="toast-container position-absolute top-0 start-50 mt-5">
+        <div id="liveToastDeleteError" class="toast bg-danger" role="alert" aria-live="assertive"
+            aria-atomic="true" style="width:500px;height:100px;">
+            <div class="toast-header"></div>
+            <div class="toast-body text-light fs-5">
+                Trong khóa học có lớp học,rất tiếc không thể xóa
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- <script src="./js/trangQuanLyKhoaHoc.js"></script> -->
+    <script src="./js/trangQuanLyKhoaHocTest.js"></script>
+
+
+</body>
+
+</html>

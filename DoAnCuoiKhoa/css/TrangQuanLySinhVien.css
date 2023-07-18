@@ -1,0 +1,192 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --leftBackground: rgba(74, 75, 104, 1);
+    --logoBottom: white;
+    --fontSizeItem: 15px;
+    --backgroundHeaderFooter: rgb(233 231 231);
+}
+
+.main {
+    min-width: 1500px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: white;
+}
+
+.divLeft {
+    width: 18%;
+    height: 100vh;
+    background-color: var(--leftBackground);
+}
+
+.divRight {
+    width: 82%;
+    height: 100vh;
+    /* position: relative; */
+}
+
+.divLeft .logo {
+    text-align: center;
+    border-bottom: 1px solid var(--logoBottom);
+}
+
+.logo img {
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.logo p {
+    margin-bottom: 40px;
+}
+
+.item {
+    padding: 20px 40px;
+}
+
+.item a {
+    text-decoration: none;
+    color: var(--logoBottom);
+}
+
+.item a:hover {
+    opacity: 0.5;
+    /* background-color:var(--backgroundHeaderFooter); */
+}
+
+.item a i[class*="fa-"] {
+    width: 30px;
+    display: inline-block;
+}
+
+.divHeader {
+    height: 80px;
+    width: 100%;
+    /* position: absolute;
+    top: 0; */
+    background-color: var(--backgroundHeaderFooter);
+}
+
+.divFooter {
+    height: 80px;
+    width: 82%;
+    /* width: 100%; */
+    position: absolute;
+    bottom: 0;
+    background-color: var(--backgroundHeaderFooter);
+}
+
+.divMain {
+    overflow-y: scroll;
+    height: 90vh;
+}
+.divMain h4{
+    text-align: center;
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
+}
+
+.divHeader {
+    display: flex;
+    justify-content: space-between;
+    line-height: 80px;
+}
+
+.divHeader p {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+    margin-left: 80px;
+}
+
+.btnDangXuat {
+    display: inline-block;
+    width: 100px;
+}
+#btnSelect {
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.divFooter {
+    text-align: center;
+    line-height: 80px;
+}
+
+.divTable {
+    margin: 20px 20px;
+}
+
+.divSearch {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+#search{
+    width: 300px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+
+button[class*="btn-"] {
+    margin-right: 20px !important;
+}
+
+.khoaHoc {
+    display: flex;
+    gap: 40px;
+    /* margin-bottom: 10px; */
+    margin-top: 20px;
+    margin-left: 90px;
+}
+
+.khoaHoc img {
+    width: 36px;
+    height: 36px;
+}
+
+.error-message{
+    color: red;
+}
+.handalAZ{
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+.divNotFound p{
+    font-size: 20px;
+    margin-top: 30px;
+    color: grey;
+    text-align: center;
+}
+.divSearchInput{
+    margin-left: 150px;
+ }
